@@ -18,13 +18,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    img: String,
-    country: {
-      type: String,
-      required: true,
-    },
-    phone: String,
-    desc: String,
     isSeller: {
       type: Boolean,
       default: false,
