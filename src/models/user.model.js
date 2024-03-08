@@ -1,33 +1,40 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose"; // Importing mongoose library
 
-const { Schema } = mongoose;
+const { Schema } = mongoose; // Destructuring Schema from mongoose
 
+// Defining schema for user
 const userSchema = new Schema(
   {
     userName: {
       type: String,
-      required: true,
-      unique: true,
+      required: true, // Username is required
+      unique: true, // Username must be unique
     },
     email: {
       type: String,
-      required: true,
-      unique: true,
+      required: true, // Email is required
+      unique: true, // Email must be unique
     },
     password: {
       type: String,
-      required: true,
+      required: true, // Password is required
     },
-    isSeller: {
+    userType: {
+      type: String,
+      enum: ["Admin", "Manager"], // User type can only be "Admin" or "Manager"
+      default: "Manager", // Default user type is "Manager"
+    },
+    isAdmin: {
       type: Boolean,
-      default: false,
+      default: false, // By default, the user is not an admin
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Adding createdAt and updatedAt fields
   }
 );
 
-const User = mongoose.model('User', userSchema);
+// Creating User model based on userSchema
+const User = mongoose.model("User", userSchema);
 
-export default User;
+export default User; // Exporting User model

@@ -1,28 +1,34 @@
-import express from "express";
-import { PORT } from "../src/config/config.js";
-import "./config/db.js";
-import cookieParser from "cookie-parser";
-import cors from 'cors';
+import express from "express"; // Importing Express framework
+import { PORT } from "../src/config/config.js"; // Importing port configuration
+import "./config/db.js"; // Importing database configuration
+import cookieParser from "cookie-parser"; // Importing cookie-parser middleware
+import cors from 'cors'; // Importing cors middleware for cross-origin requests
 
-import userRoute from "./routes/user.route.js";
-import authRoute from "./routes/auth.route.js";
+import userRoute from "./routes/user.route.js"; // Importing user routes
+import authRoute from "./routes/auth.route.js"; // Importing authentication routes
+import productRoute from "./routes/product.route.js"; // Importing product routes
 
-const app = express();
+const app = express(); // Creating Express application
 
+// Middleware for allowing cross-origin requests from http://localhost:5173 and enabling credentials
 app.use(cors({origin:"http://localhost:5173", credentials:true}));
-app.use(express.json());
-app.use(cookieParser());
 
-app.use("/api/user", userRoute);
-app.use("/api/auth", authRoute);
+app.use(express.json()); // Middleware for parsing JSON request bodies
+app.use(cookieParser()); // Middleware for parsing cookies
 
+// Routes
+app.use("/api/user", userRoute); // Mounting user routes at /api/user
+app.use("/api/auth", authRoute); // Mounting authentication routes at /api/auth
+app.use("/api/product", productRoute); // Mounting product routes at /api/product
+
+// Error handling middleware
 app.use((err, req, res, next)=>{
-  const errorStatus = err.status || 500;
-  const errorMessage = err.message || "Something went wrong!";
+  const errorStatus = err.status || 500; // Getting error status
+  const errorMessage = err.message || "Something went wrong!"; // Getting error message
 
-  return res.status(errorStatus).send(errorMessage);
+  return res.status(errorStatus).send(errorMessage); // Sending error response
 })
 
 app.listen(PORT, () => {
-  console.log(`Server is running at port no ${PORT}`);
+  console.log(`Server is running at port no ${PORT}`); // Listening on the configured port
 });
