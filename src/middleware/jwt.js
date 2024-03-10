@@ -14,6 +14,7 @@ export const verifyToken = (req, res, next) => {
     // If token is valid, extract user ID and user type from payload and attach them to request object
     req.userId = payload.id;
     req.userType = payload.userType;
+    req.isAdmin = payload.isAdmin;
 
     next(); // Proceed to the next middleware
   });

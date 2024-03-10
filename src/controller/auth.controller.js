@@ -27,6 +27,7 @@ export const login = async (req, res, next) => {
       {
         id: user._id, // Include user ID in token payload
         userType: user.userType, // Include user type in token payload
+        isAdmin:user.isAdmin
       },
       JWT_KEY
     );

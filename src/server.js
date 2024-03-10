@@ -7,6 +7,7 @@ import cors from 'cors'; // Importing cors middleware for cross-origin requests
 import userRoute from "./routes/user.route.js"; // Importing user routes
 import authRoute from "./routes/auth.route.js"; // Importing authentication routes
 import productRoute from "./routes/product.route.js"; // Importing product routes
+import orderRoute from "./routes/order.route.js";
 
 const app = express(); // Creating Express application
 
@@ -20,6 +21,7 @@ app.use(cookieParser()); // Middleware for parsing cookies
 app.use("/api/user", userRoute); // Mounting user routes at /api/user
 app.use("/api/auth", authRoute); // Mounting authentication routes at /api/auth
 app.use("/api/product", productRoute); // Mounting product routes at /api/product
+app.use("/api/order", orderRoute);
 
 // Error handling middleware
 app.use((err, req, res, next)=>{

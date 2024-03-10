@@ -12,7 +12,7 @@ import {
 } from "../controller/product.controller.js"; // Importing controller functions for product operations
 
 // Route to create a new product
-router.post("/", createProduct);
+router.post("/", verifyToken, isManager, createProduct);
 
 // Route to update a product by ID
 router.post("/:id", verifyToken, isManager, updateProduct);
@@ -24,6 +24,6 @@ router.get("/", getAllProduct);
 router.get("/:id", getProduct);
 
 // Route to delete a product by ID
-router.post("/:id", verifyToken, isManager, deleteProduct);
+router.delete("/:id", verifyToken, isManager, deleteProduct);
 
 export default router; // Exporting the router

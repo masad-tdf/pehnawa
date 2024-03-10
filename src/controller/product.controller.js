@@ -88,10 +88,10 @@ export const updateProduct = async (req, res, next) => {
     // If product doesn't exist, return a 404 Not Found error
     if (!existingProduct) return next(createError(404, "Product not found"));
 
-    const { Name, size, qty, price } = req.body; // Destructuring request body
+    const { Name, size, qty, price, discount } = req.body; // Destructuring request body
 
     // Define fields to be updated
-    let updateFields = { Name, size, qty, price, status: "In Stock" };
+    let updateFields = { Name, size, qty, price, discount, status: "In Stock" };
 
     // If quantity is less than 0, set status to "Out of Stock"
     if (qty < 0) {

@@ -22,9 +22,9 @@ export const createUser = async (req, res, next) => {
       ...req.body,
       password: hash,
     });
-
+    console.log(userData);
     // If user is admin, set userType to "Admin"
-    if (req.isAdmin) {
+    if (req.body.isAdmin) {
       userData.userType = "Admin";
     }
 
