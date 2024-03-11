@@ -29,7 +29,6 @@ export const placeOrder = async (req, res, next) => {
 
     // Save the order to the database
     await newOrder.save();
-    
 
     res.status(201).json(savedOrder);
   } catch (err) {
@@ -39,6 +38,20 @@ export const placeOrder = async (req, res, next) => {
 
 export const updateOrder = async (req, res, next) => {
   try {
+    const existingOrder = await Order.findById(req.params.id);
+    if (!existingOrder)
+      return next(createError(204, "Order not found against this id"));
+    if (req.body.status == "Delivered") {
+      await existingOrder.updateById(
+        { _id: req.params.id },
+        { $set: { status: "Delivered" } }
+      );
+    }else{
+      await existingOrder.updateById(
+        { _id: req.params.id },
+        { $set: { status: "Out for Delivery" } }
+      );
+    }
   } catch (err) {
     next(err);
   }
