@@ -30,7 +30,7 @@ export const placeOrder = async (req, res, next) => {
     // Save the order to the database
     await newOrder.save();
 
-    res.status(201).json(savedOrder);
+    res.status(201).json(newOrder);
   } catch (err) {
     next(err);
   }
@@ -46,7 +46,7 @@ export const updateOrder = async (req, res, next) => {
         { _id: req.params.id },
         { $set: { status: "Delivered" } }
       );
-    }else{
+    } else {
       await existingOrder.updateById(
         { _id: req.params.id },
         { $set: { status: "Out for Delivery" } }
@@ -58,9 +58,11 @@ export const updateOrder = async (req, res, next) => {
 };
 export const getAllOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find();
+    //{deliveryInfo.deliveryStatus : "Scheduled"}
+    const { status } = req.params;
+    const orders = await Order.find({ 'deliveryInfo.deliveryStatus': status });
     if (!orders) return next(createError(204, "Order not placed yet"));
-    res.status(200).send(orders);
+      res.status(200).send(orders);
   } catch (err) {
     next(err);
   }

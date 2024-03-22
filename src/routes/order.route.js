@@ -13,7 +13,7 @@ import {
 } from '../controller/order.controller.js';
 
 router.post("/", placeOrder);
-router.get("/", verifyToken, isManager, getAllOrders);
+router.get("/all/:status", verifyToken, isManager, getAllOrders);
 router.get("/:id", verifyToken, isManager, getOrder);
 router.post("/:id", verifyToken, isManager, updateOrder);
 router.delete("/:id", verifyToken, isManager, deleteOrder);

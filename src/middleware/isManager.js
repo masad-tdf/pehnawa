@@ -1,8 +1,6 @@
 import createError from "../utils/createError.js";
 
 export const isManager = (req, res, next) => {
-  console.log(req.isAdmin);
-  console.log(req.userType);
   // Assuming user roles are stored in the user object (e.g., req.user.role)
   if (req.isAdmin || req.userType == "Manager") {
     next(); // User has admin role, proceed to the next middleware
