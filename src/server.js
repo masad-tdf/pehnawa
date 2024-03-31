@@ -12,7 +12,7 @@ import orderRoute from "./routes/order.route.js";
 const app = express(); // Creating Express application
 
 // Middleware for allowing cross-origin requests from http://localhost:5173 and enabling credentials
-app.use(cors({origin:"http://localhost:5173", credentials:true}));
+app.use(cors({origin:"http://localhost:3000", credentials:true}));
 
 app.use(express.json()); // Middleware for parsing JSON request bodies
 app.use(cookieParser()); // Middleware for parsing cookies
