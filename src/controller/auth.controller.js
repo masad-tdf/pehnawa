@@ -36,7 +36,7 @@ export const login = async (req, res, next) => {
     const { password, ...info } = user._doc;
 
     // Set JWT token in cookie and send user info in response
-    res.cookie("accessToken", token, { httpOnly: true }).status(200).send(info);
+    res.cookie("accessToken", token, { httpOnly: false }).status(200).send(info);
   } catch (err) {
     next(err); // Handling errors
   }
