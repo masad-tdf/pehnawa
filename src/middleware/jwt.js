@@ -4,7 +4,8 @@ import { JWT_KEY } from '../config/config.js'; // Importing JWT key from configu
 
 // Middleware to verify JWT token
 export const verifyToken = (req, res, next) => {
-  const token = req.cookies.accessToken; // Extracting token from cookies
+  const authHeader = req.headers.authorization;
+  const token = authHeader.split(' ')[1]; // Extracting token from cookies
   if (!token) return next(createError(401, "You are not authenticated!")); // If token is not present, return 401 Unauthorized error
 
   // Verifying the token
