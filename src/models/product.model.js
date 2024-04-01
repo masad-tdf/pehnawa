@@ -5,7 +5,7 @@ const { Schema } = mongoose; // Destructuring Schema from mongoose
 // Defining schema for product
 const productSchema = new Schema(
   {
-    Name: {
+    name: {
       type: String,
       required: true, // Name is required
     },
