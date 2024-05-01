@@ -5,16 +5,16 @@ import createError from "../utils/createError.js"; // Importing utility function
 export const createProduct = async (req, res, next) => {
   try {
     const { Name, size, qty, price, status } = req.body; // Destructuring request body
-    const existingProduct = await Product.find({ Name, size }); // Checking if the product already exists
+    //const existingProduct = await Product.find({ Name, size }); // Checking if the product already exists
 
     // If product already exists, return a 403 Forbidden error
-    if (existingProduct[0])
-      return next(
-        createError(
-          403,
-          "Product already exists. Kindly update the product if you want to change something."
-        )
-      );
+    //if (existingProduct[0])
+      //return next(
+       // createError(
+          //403,
+         // "Product already exists. Kindly update the product if you want to change something."
+        //)
+     // );
 
     // Creating a new product object
     let newProduct = new Product({
