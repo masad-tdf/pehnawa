@@ -27,7 +27,7 @@ export const login = async (req, res, next) => {
       {
         id: user._id, // Include user ID in token payload
         userType: user.userType, // Include user type in token payload
-        isAdmin:user.isAdmin
+        isAdmin: user.isAdmin,
       },
       JWT_KEY
     );
@@ -36,7 +36,10 @@ export const login = async (req, res, next) => {
     const { password, ...info } = user._doc;
 
     // Set JWT token in cookie and send user info in response
-    res.cookie("accessToken", token, { httpOnly: false }).status(200).send(info);
+    res
+      .cookie("accessToken", token, { httpOnly: false })
+      .status(200)
+      .send(info);
   } catch (err) {
     next(err); // Handling errors
   }
@@ -46,7 +49,7 @@ export const login = async (req, res, next) => {
 export const logout = async (req, res, next) => {
   // Check if user is already logged out
   if (!req.accessToken) return next(createError(200, "Already logged out"));
-  
+
   // Clear JWT token from cookie and send response
   res
     .clearCookie("accessToken", {
