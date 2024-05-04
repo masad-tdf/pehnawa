@@ -13,7 +13,7 @@ const orderSchema = new Schema(
       postcode: String,
       phone: String,
     },
-    OrderSummary: [
+    orderSummary: [
       {
         _id: false,
         id: {
