@@ -5,7 +5,7 @@ import createError from "../utils/createError.js";
 export const placeOrder = async (req, res, next) => {
   try {
     // Extract data from the request body
-    const { billingDetails, OrderSummary} = req.body;
+    const { billingDetails, orderSummary} = req.body;
 
     // Calculate total amount, discount, and payable amount for each product
     // for (const product of productsInfo) {
@@ -23,7 +23,7 @@ export const placeOrder = async (req, res, next) => {
     // Create a new order instance using the Order model
     const newOrder = new Order({
       billingDetails,
-      OrderSummary,
+      orderSummary,
     });
 
     // Save the order to the database
