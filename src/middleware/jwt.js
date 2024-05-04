@@ -21,6 +21,7 @@ export const verifyToken = (req, res, next) => {
 
   // Verification using a try-catch block for better error handling
   try {
+    console.log(token);
     const decoded = jwt.verify(token, JWT_KEY);
     req.userId = decoded.id;
     req.userType = decoded.userType;
