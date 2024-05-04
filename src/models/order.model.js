@@ -4,67 +4,49 @@ const { Schema } = mongoose;
 
 const orderSchema = new Schema(
   {
-    consumerInfo: {
-      name: {
-        type: String,
-        required: true,
-      },
-      email: {
-        type: String,
-        required: true,
-      },
-      phone: {
-        type: String,
-        required: true,
-      },
-      address: {
-        street: {
-          type: String,
-          required: true,
-        },
-        city: {
-          type: String,
-          required: true,
-        },
-        postalCode: {
-          type: String,
-          required: true,
-        },
-        country: {
-          type: String,
-          required: true,
-        },
-      },
+    billingDetails: {
+      firstName: String,
+      country: String,
+      address: String,
+      city: String,
+      state: String,
+      postcode: String,
+      phone: String,
     },
-    productsInfo: [
+    OrderSummary: [
       {
         _id: false,
-        productId: {
+        id: {
           type: Schema.Types.ObjectId,
           ref: "Product",
           required: true,
         },
-        qty: {
+        img: {
+          type: [String],
+          default: [],
+        },
+        name:String,
+        price:Number,
+        quantity: {
           type: Number,
           required: true,
         },
-        totalAmount: Number,
-        payableAmount: Number,
+        subtotal: Number,
       },
     ],
-    deliveryInfo: {
-      orderedDate: {
-        type: Date,
-      },
-      deliveryDate: {
-        type: Date,
-      },
-      deliveryStatus: {
-        type: String,
-        enum: ["Scheduled", "Out for Delivery", "Delivered"],
-        default: "Scheduled",
-      },
-    },
+    // deliveryInfo: {
+    //   orderedDate: {
+    //     type: Date,
+    //   },
+    //   deliveryDate: {
+    //     type: Date,
+    //   },
+    //   deliveryStatus: {
+    //     type: String,
+    //     enum: ["Scheduled", "Out for Delivery", "Delivered"],
+    //     default: "Scheduled",
+    //   },
+    // },
   },
   {
     timestamps: true,
