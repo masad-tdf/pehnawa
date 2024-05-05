@@ -27,9 +27,17 @@ const productSchema = new Schema(
       enum: ["Out of Stock", "In Stock"], // Status can only be "Out of Stock" or "In Stock"
       default: "In Stock", // Default status is "In Stock"
     },
-    images: {
-      type: [String], // Array of strings (URLs)
-      default: [], // Default value is an empty array
+    image1: {
+      type: [String],
+      default: [],
+    },
+    image2: {
+      type: [String],
+      default: [],
+    },
+    image3: {
+      type: [String],
+      default: [],
     },
   },
   {
