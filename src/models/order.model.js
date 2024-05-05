@@ -21,7 +21,7 @@ const orderSchema = new Schema(
           ref: "Product",
           required: true,
         },
-        img: {
+        image1: {
           type: [String],
           default: [],
         },
